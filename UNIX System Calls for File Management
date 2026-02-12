@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+
+int main() {
+    int fd;
+    char buffer[100];
+    struct stat fileStat;
+
+    fd = open("test.txt", O_RDWR | O_CREAT, 0644);
+
+    write(fd, "Hello UNIX\n", 11);
+
+    lseek(fd, 0, SEEK_SET);
+
+    read(fd, buffer, 11);
+    buffer[11] = '\0';
+    printf("File Content: %s\n", buffer);
+
+    stat("test.txt", &fileStat);
+    printf("File Size: %ld bytes\n", fileStat.st_size);
+
+    close(fd);
+
+    return 0;
+}
