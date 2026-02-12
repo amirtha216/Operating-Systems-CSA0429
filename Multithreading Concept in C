@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void* print_message(void* arg) {
+    printf("Thread %ld is running\n", (long)arg);
+    return NULL;
+}
+
+int main() {
+    pthread_t t1, t2;
+
+    pthread_create(&t1, NULL, print_message, (void*)1);
+    pthread_create(&t2, NULL, print_message, (void*)2);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    printf("Main thread finished\n");
+    return 0;
+}
