@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int n, start, i;
+    int blocks[50];
+
+    printf("Enter number of blocks in file: ");
+    scanf("%d", &n);
+
+    printf("Enter starting block: ");
+    scanf("%d", &start);
+
+    printf("Enter block numbers allocated:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &blocks[i]);
+
+    printf("\nLinked File Allocation:\n");
+    printf("Start Block: %d\n", start);
+
+    for(i = 0; i < n; i++) {
+        if(i != n - 1)
+            printf("Block %d -> ", blocks[i]);
+        else
+            printf("Block %d -> NULL", blocks[i]);
+    }
+
+    printf("\n");
+    return 0;
+}
